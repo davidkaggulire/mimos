@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  /* background-color: rgb(10, 10, 37); */
 }
 
 a {
@@ -13,4 +16,46 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.emoji-picker-react {
+  position: absolute;
+  margin-top: -350px;
+  background-color: #ccc;
+  box-shadow: 0 5px 10px hsl(251, 82%, 74%);
+  border-color: #9a86f3;
+}
+
+.emoji-categories{
+  /* background-color: #080420; */
+}
+
+.emoji-picker-react .emoji-scroll-wrapper {
+  background-color: #ccc;
+}
+
+.emoji-scroll-wrapper::-webkit-scrollbar {
+  background-color: #080420;
+  width: 5px;
+}
+
+.emoji-scroll-wrapper::-webkit-scrollbar::-ms-thumb {
+  background-color: #9a86f3;
+}
+
+.emoji-picker-react .emoji-categories button {
+  filter: contrast(0);
+}
+
+.emoji-search {
+  background-color: transparent;
+  border-color: #9186f3;
+}
+
+.content-wrapper {
+  background-color: #080420;
+}
+
+.emoji-group::before {
+  background-color: #080420;
 }
