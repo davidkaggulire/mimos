@@ -1,0 +1,20 @@
+.message_form {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+
+.input__message {
+  width: 80%;
+  padding: 0.5rem;
+  border-radius: 0.5px;
+  border: 1px solid #ccc;
+}
+
+.input__button {
+  width: 20%;
+  padding: 0.5rem;
+  background-color: rgb(10, 10, 37);
+  border: 1px solid rgb(10, 10, 37);
+  color: white;
+}

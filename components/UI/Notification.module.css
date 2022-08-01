@@ -1,0 +1,56 @@
+.notify {
+  position: fixed;
+  text-align: right;
+  font-size: 1.6rem;
+  animation: alert 4s linear none;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  z-index: 1200;
+  top:8vh;
+  left: 100%;
+  /* margin: 0 auto; */
+  width: 20%;
+}
+
+.success {
+  background-color: green;
+  color: white;
+  padding: 0.5rem;
+}
+
+.error {
+  background-color: rgb(231, 70, 70);
+  color: white;
+  padding: 0.5rem;
+  text-align: right;
+}
+
+@media screen and (max-width: 600px) {
+  .notify {
+    width: 100%;
+    top:5rem;
+    text-align: center;
+  }
+
+  .error {
+    text-align: center;
+  }
+}
+
+@keyframes alert {
+  0%,
+  100% {
+    opacity: 0;
+    left: 0;
+    transform: translateX(-3rem);
+    /* display: none; */
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(0rem);
+  }
+  90% {
+    opacity: 1;
+    transform: translateX(-3rem);
+  }
+}

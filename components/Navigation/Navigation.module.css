@@ -1,0 +1,26 @@
+.nav{
+    top: 0;
+    width: 100%;
+    background-color: rgb(10, 10, 37);
+    color: white;
+    padding: 0.2rem;
+    font-size: 1.2rem;
+    position: fixed;
+}
+
+.nav li{
+    list-style: none;
+}
+
+.nav__items{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.nav__actions{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    cursor: pointer;
+}

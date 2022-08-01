@@ -1,0 +1,39 @@
+.contacts{
+    background-color: #131324;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.app__heading{
+    color: white;
+}
+
+.user__details{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    color:#ccc;
+    border: 1px solid transparent;
+    padding: 0.2rem;
+    cursor: pointer;
+    width: 100%;
+}
+
+.user__details:hover{
+    background-color: #ffffff39;
+}
+
+.avatar{
+    margin: 2rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
+@media screen and (min-width: 360px) and (max-width: 480px) {
+    .contacts {
+      width: 100%;
+    }
+  }

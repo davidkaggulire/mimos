@@ -1,0 +1,112 @@
+.chat__input {
+  background-color: #080420;
+  display: grid;
+  grid-template-columns: 5% 95%;
+  gap: 1rem;
+  align-items: center;
+  padding: 0 5rem;
+}
+
+.message__form {
+  /* padding: 0.5rem; */
+  width: 100%;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff34;
+}
+
+.message__form input {
+  width: 90%;
+  height: 100%;
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  font-size: 1.2rem;
+}
+
+.message__form input:focus {
+  outline: none;
+}
+
+.message__form button {
+  width: 10%;
+  padding: 0.6rem;
+  border: none;
+}
+
+.button_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+  gap: 1rem;
+}
+
+.emoji {
+  position: relative;
+}
+
+.emoji svg {
+  font-size: 1.5rem;
+  color: #ffff00c8;
+  position: fixed;
+  margin-top: -0.8rem;
+}
+
+.button {
+  border-radius: 2rem;
+  color: white;
+  width: 100%;
+  background-color: #9a86f3;
+  padding: 0.3rem 2rem;
+  border: none;
+}
+
+.sendemoji{
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+
+  .chat__input {
+    background-color: #080420;
+    bottom: 0;
+    gap: 1rem;
+    position: fixed;
+    margin-right: 0;
+  }
+
+  .button_container {
+    display: flex;
+    flex-direction: row;
+
+  }
+
+  .message__form {
+    padding: 0.5rem;
+    width:80vw;
+    margin-left: 0.5rem;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    background-color: #ffffff34;
+  }
+
+  .message__form button {
+    width: 20%;
+    /* padding: 0.6rem; */
+    border: none;
+  }
+
+  .message__form input {
+    height: 80%;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    font-size: 1.2rem;
+  }
+
+}
+
