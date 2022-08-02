@@ -18,7 +18,7 @@ function PhoneContacts(props) {
   }, [currentUser]);
 
   const changeCurrentChat = (index, contact) => {
-    console.log(contact);
+    // console.log(contact);
     setCurrentSelected(index);
     localStorage.setItem("messaging-user", JSON.stringify(contact));
     changeChat(contact);
