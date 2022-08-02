@@ -54,7 +54,7 @@ function MainChat() {
       }
     }
     setUser();
-  }, [router, setCurrentUser]);
+  });
 
   useEffect(() => {
     if (currentUser) {
