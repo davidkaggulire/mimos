@@ -50,8 +50,8 @@ function ChatPhoneContainer() {
     setCurrentChat(JSON.parse(localStorage.getItem("messaging-user")));
   }, [setCurrentChat]);
 
-  console.log(currentChat, "we have reached");
-  console.log(currentUser);
+  // console.log(currentChat, "we have reached");
+  // console.log(currentUser);
 
   useEffect(() => {
     async function fetchSelectedUser() {
@@ -81,7 +81,7 @@ function ChatPhoneContainer() {
       message: msg,
     });
 
-    console.log(socket.current, "hello men");
+    // console.log(socket.current, "hello men");
 
     const msgs = [...messages];
     msgs.push({ fromSelf: true, message: msg });
@@ -101,20 +101,21 @@ function ChatPhoneContainer() {
   }, [arrivalMessage]);
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behaviour: "smooth" });
-  }, [messages]);
+    console.log(scrollRef);
+    scrollRef.current?.scrollIntoView({ behaviour: "smooth", block: 'start' });
+  }, [messages, scrollRef]);
 
   const viewChatsHandler = () => {
-    router.push('/chat');
-  }
+    router.push("/chat");
+  };
 
   return (
     <Fragment>
       {currentChat && (
-        <div className={classes.chat__container}>
+        <div className={classes.chat__phone_container}>
           <div className={classes.chat__header}>
             <div className={classes.chat__avatar}>
-            <IoArrowBack onClick={viewChatsHandler}/>
+              <IoArrowBack onClick={viewChatsHandler} />
               <Image
                 src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=400"
                 alt="avatar"
@@ -147,9 +148,8 @@ function ChatPhoneContainer() {
               );
             })}
           </div>
-          <div className={classes.chat_input}>
-            <ChatPhoneInput handleSendMsg={handleSendMsg} />
-          </div>
+
+          <ChatPhoneInput handleSendMsg={handleSendMsg} />
         </div>
       )}
     </Fragment>
