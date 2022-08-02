@@ -5,6 +5,10 @@
     padding: 0.2rem;
 }
 
+.logout:hover {
+    background-color: #ffffff39;
+}
+
 .power{
     color: white;
     font-size: 1.2rem;
