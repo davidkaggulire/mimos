@@ -16,7 +16,7 @@ function ChatContainer(props) {
 
   const [isLoaded, setIsLoaded] = useState(false);
 
-  console.log(currentChat, "we have reached");
+  // console.log(currentChat, "we have reached");
 
   useEffect(() => {
     async function fetchSelectedUser() {
@@ -46,7 +46,7 @@ function ChatContainer(props) {
       message: msg,
     });
 
-    console.log(socket.current, "hello men");
+    // console.log(socket.current, "hello men");
 
     const msgs = [...messages];
     msgs.push({ fromSelf: true, message: msg });
@@ -66,6 +66,7 @@ function ChatContainer(props) {
   }, [arrivalMessage]);
 
   useEffect(() => {
+    console.log(scrollRef);
     scrollRef.current?.scrollIntoView({ behaviour: "smooth" });
   }, [messages]);
 
