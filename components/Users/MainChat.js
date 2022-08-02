@@ -71,7 +71,7 @@ function MainChat() {
         const response = await axios.get(
           `${getAllUsersRoute}/${currentUser._id}`
         );
-        console.log(response);
+        // console.log(response);
 
         setAllUsers(response.data);
       }
@@ -85,7 +85,7 @@ function MainChat() {
   };
 
   const isBreakpoint = useMediaQuery(600);
-  console.log(currentChat);
+  // console.log(currentChat);
 
   return (
     <Fragment>
