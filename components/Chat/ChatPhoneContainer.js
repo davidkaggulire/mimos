@@ -13,6 +13,7 @@ import { io } from "socket.io-client";
 import ChatPhoneInput from "./ChatPhoneInput";
 import { IoArrowBack } from "react-icons/io5";
 import { useRouter } from "next/router";
+import logo from "./../../assets/robot.gif";
 
 function ChatPhoneContainer() {
   const [currentChat, setCurrentChat] = useState(undefined);
@@ -102,12 +103,14 @@ function ChatPhoneContainer() {
 
   useEffect(() => {
     console.log(scrollRef);
-    scrollRef.current?.scrollIntoView({ behaviour: "smooth", block: 'start' });
+    scrollRef.current?.scrollIntoView({ behaviour: "smooth", block: "start" });
   }, [messages, scrollRef]);
 
   const viewChatsHandler = () => {
     router.push("/chat");
   };
+
+  const messageLength = messages.length;
 
   return (
     <Fragment>
@@ -130,23 +133,42 @@ function ChatPhoneContainer() {
             </div>
           </div>
           <div className={classes.chat__messages}>
-            {messages.map((message) => {
-              return (
-                <div ref={scrollRef} key={uuidv4()}>
-                  <div
-                    className={`${classes.message} ${
-                      message.fromSelf
-                        ? `${classes.sended}`
-                        : `${classes.received}`
-                    }`}
-                  >
-                    <div className={classes.content}>
-                      <p>{message.message}</p>
+            {messageLength === 0 ? (
+              <div className={classes.welcome}>
+                <Image
+                  src={logo}
+                  alt="Robot"
+                  className={classes.image}
+                  height={200}
+                  width={300}
+                />
+                <p>
+                  Hi,{" "}
+                  <span className={classes.username}>
+                    {currentUser.username}
+                  </span>
+                </p>
+                <p>Type a message to start chatting</p>
+              </div>
+            ) : (
+              messages.map((message) => {
+                return (
+                  <div ref={scrollRef} key={uuidv4()}>
+                    <div
+                      className={`${classes.message} ${
+                        message.fromSelf
+                          ? `${classes.sended}`
+                          : `${classes.received}`
+                      }`}
+                    >
+                      <div className={classes.content}>
+                        <p>{message.message}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })
+            )}
           </div>
 
           <ChatPhoneInput handleSendMsg={handleSendMsg} />
