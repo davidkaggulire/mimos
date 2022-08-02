@@ -39,7 +39,7 @@ function MainChat() {
       }
 
       return () => media.removeListener(updateTarget);
-    }, []);
+    }, [updateTarget, width]);
 
     return targetReached;
   };
