@@ -35,7 +35,7 @@ function ChatPhoneContainer() {
       }
     }
     setUser();
-  }, [setCurrentUser]);
+  }, [setCurrentUser, router]);
 
   useEffect(() => {
     if (currentUser) {
