@@ -19,6 +19,7 @@ function ChatPhoneContainer() {
   const [currentChat, setCurrentChat] = useState(undefined);
   const [currentUser, setCurrentUser] = useState(undefined);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [checkFetchedMsgs, setCheckFetchedMsgs] = useState(false);
 
   const [messages, setMessages] = useState([]);
   const [arrivalMessage, setArrivalMessage] = useState(null);
@@ -61,7 +62,13 @@ function ChatPhoneContainer() {
           from: currentUser._id,
           to: currentChat._id,
         });
+        
         setMessages(response.data);
+
+        if(messages.length === 0){
+          setCheckFetchedMsgs(false);
+        }
+        setCheckFetchedMsgs(true);
         setIsLoaded(true);
       }
     }
@@ -133,7 +140,7 @@ function ChatPhoneContainer() {
             </div>
           </div>
           <div className={classes.chat__messages}>
-            {messageLength === 0 ? (
+            {messageLength === 0 && checkFetchedMsgs ? (
               <div className={classes.welcome}>
                 <Image
                   src={logo}
