@@ -21,11 +21,6 @@ function ChatInput(props) {
     setShowEmojiPicker(!showEmojiPicker);
   };
 
-  // const msgHandler = (event) => {
-  //   console.log(event.target.value);
-  //   setMsg(event.target.value);
-  // };
-
   const submitHandler = (event) => {
     event.preventDefault();
     if (msg.length > 0) {
