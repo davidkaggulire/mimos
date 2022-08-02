@@ -112,7 +112,7 @@ const AuthForm = () => {
             Login
           </button>
           <span className={classes.switch}>
-            Don't have an account ?
+            Don't have an account ?&apos;
             <Link href="/signup">
               <a>Register</a>
             </Link>
