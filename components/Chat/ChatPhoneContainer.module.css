@@ -143,12 +143,11 @@
   }
 
   .message .content {
-    max-width: 60%;
+    max-width: 80%;
     overflow-wrap: break-word;
     padding: 0 0.3rem;
     font-size: 1.1rem;
     border-radius: 1rem;
-  
     color: black;
   }
 }
