@@ -113,8 +113,11 @@
   }
 
   .chat__messages {
+    padding: 0.5rem 0.8rem;
     margin-top: 5rem;
     margin-bottom: 5rem;
+    width: 100%;
+    /* text-align: center; */
   }
 
   .welcome {
@@ -140,9 +143,9 @@
   }
 
   .message .content {
-    max-width: 40%;
+    max-width: 60%;
     overflow-wrap: break-word;
-    padding: 0 0.5rem;
+    padding: 0 0.3rem;
     font-size: 1.1rem;
     border-radius: 1rem;
   
