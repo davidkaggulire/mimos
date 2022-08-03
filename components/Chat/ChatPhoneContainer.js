@@ -149,7 +149,7 @@ function ChatPhoneContainer() {
                   height={200}
                   width={300}
                 />
-                <p>
+                <p className={classes.welcome__message}>
                   Hi,{" "}
                   <span className={classes.username}>
                     {currentUser.username}

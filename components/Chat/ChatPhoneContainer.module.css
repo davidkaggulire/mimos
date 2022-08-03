@@ -80,6 +80,28 @@
   width: 100%;
 }
 
+.welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid transparent;
+  background-color: #cef0f5;
+  color: #333;
+  border-radius: 0.5rem;
+  text-align: center;
+  position: absolute;
+  top: 30%;
+}
+
+.welcome__message{
+  font-weight: 700;
+}
+
+.username{
+  color: #4e0eff;
+}
+
 @media screen and (max-width: 600px) {
   .chat__header {
     padding: 0.5rem;
@@ -107,5 +129,23 @@
     text-align: center;
     position: absolute;
     top: 30%;
+  }
+
+  .welcome__message{
+    font-weight: 700;
+  }
+
+  .username{
+    color: #4e0eff;
+  }
+
+  .message .content {
+    max-width: 40%;
+    overflow-wrap: break-word;
+    padding: 0 0.5rem;
+    font-size: 1.1rem;
+    border-radius: 1rem;
+  
+    color: black;
   }
 }
