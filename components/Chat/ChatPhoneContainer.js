@@ -110,7 +110,7 @@ function ChatPhoneContainer() {
 
   useEffect(() => {
     console.log(scrollRef);
-    scrollRef.current?.scrollIntoView({ behaviour: "smooth", block: "start" });
+    scrollRef.current?.scrollIntoView({ behaviour: "smooth"});
   }, [messages, scrollRef]);
 
   const viewChatsHandler = () => {
