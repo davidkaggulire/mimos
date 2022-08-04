@@ -1,9 +1,14 @@
 import "../styles/globals.css";
 
 import "react-toastify/dist/ReactToastify.min.css";
+import SocketProvider from "../store/SocketProvider";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  // return <Component {...pageProps} />
+
+  return <SocketProvider>
+    <Component {...pageProps} />
+  </SocketProvider>
 
   // return (
   //   <>
