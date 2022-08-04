@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { getAllMessageRoute, sendMessageRoute } from "../../utils/APIRoutes";
 import axios from "axios";
+import { useSocket } from "../../store/SocketProvider";
 
 function ChatContainer(props) {
   const { currentUser, currentChat, socket } = props;
@@ -13,6 +14,8 @@ function ChatContainer(props) {
   const [messages, setMessages] = useState([]);
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const scrollRef = useRef();
+
+  // const socket = useSocket();
 
   const [isLoaded, setIsLoaded] = useState(false);
 
