@@ -14,6 +14,7 @@ import ChatPhoneInput from "./ChatPhoneInput";
 import { IoArrowBack } from "react-icons/io5";
 import { useRouter } from "next/router";
 import logo from "./../../assets/robot.gif";
+import { useSocket } from "../../store/SocketProvider";
 
 function ChatPhoneContainer() {
   const [currentChat, setCurrentChat] = useState(undefined);
@@ -24,8 +25,10 @@ function ChatPhoneContainer() {
   const [messages, setMessages] = useState([]);
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const scrollRef = useRef();
-  const socket = useRef();
+  // const socket = useRef();
   const router = useRouter();
+
+  const socket = useSocket();
 
   useEffect(() => {
     async function setUser() {
@@ -41,9 +44,10 @@ function ChatPhoneContainer() {
 
   useEffect(() => {
     if (currentUser) {
-      socket.current = io(host, {
-        withCredentials: true,
-      });
+      // socket.current = io(host, {
+      //   withCredentials: true,
+      // });
+      console.log(socket);
       socket.current.emit("add-user", currentUser._id);
     }
   }, [currentUser]);
