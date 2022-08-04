@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import ChatContainer from "../Chat/ChatContainer";
 import { io } from "socket.io-client";
 import PhoneContacts from "./PhoneContact";
+import { useSocket } from "../../store/SocketProvider";
 
 function MainChat() {
   const [allUsers, setAllUsers] = useState([]);
@@ -15,7 +16,10 @@ function MainChat() {
   const [currentChat, setCurrentChat] = useState(undefined);
   const [isLoaded, setIsLoaded] = useState(false);
   const router = useRouter();
-  const socket = useRef();
+  // const socket = useRef();
+
+  // access to socket.io
+  const socket = useSocket();
 
   // console.log(io(host));
   const useMediaQuery = (width) => {
@@ -58,9 +62,11 @@ function MainChat() {
 
   useEffect(() => {
     if (currentUser) {
-      socket.current = io(host, {
-        withCredentials: true,
-      });
+      // socket.current = io(host, {
+      //   withCredentials: true,
+      // });
+
+      console.log(socket.current);
       socket.current.emit("add-user", currentUser._id);
     }
   }, [currentUser]);
