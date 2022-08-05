@@ -6,12 +6,23 @@ import { toast, ToastContainer } from "react-toastify";
 
 import { useRouter } from "next/router";
 import { loginRoute } from "../../utils/APIRoutes";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 const AuthForm = () => {
   const [values, setValues] = useState({
     username: "",
     password: "",
   });
+
+  const [passwordType, setPasswordType] = useState("password");
+
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      return;
+    }
+    setPasswordType("password");
+  };
 
   const router = useRouter();
 
@@ -101,13 +112,28 @@ const AuthForm = () => {
             onChange={handleChange}
             min="3"
           />
-          <input
-            className={classes.input}
-            type="password"
-            placeholder="Password"
-            name="password"
-            onChange={handleChange}
-          />
+          <div className={classes.password__input}>
+            <input
+              className={classes.input}
+              type={passwordType}
+              placeholder="Password"
+              name="password"
+              onChange={handleChange}
+            />
+
+            {passwordType === "password" ? (
+              <FaRegEyeSlash
+                className={classes.toggle__btn}
+                onClick={togglePassword}
+              />
+            ) : (
+              <FaRegEye
+                className={classes.toggle__btn}
+                onClick={togglePassword}
+              />
+            )}
+          </div>
+
           <button type="submit" className={classes.button}>
             Login
           </button>
