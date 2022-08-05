@@ -1,119 +1,105 @@
-import { useEffect, useState, useRef, useReducer, Fragment } from "react";
+import { Fragment, useState } from "react";
 import classes from "./ResetPassword.module.css";
-import { emailReducer } from "./reducer";
-import Input from "../UI/Input";
-import LoadingSpinner from "../UI/LoadingSpinner";
-import sendPasswordReset from "./sendPasswordReset";
-import { Link, useNavigate } from "react-router-dom";
-import { uiActions } from "../../store/ui-slice";
-import { useDispatch, useSelector } from "react-redux";
-import Notification from "../UI/Notification";
+import Link from "next/link";
+import { toast, ToastContainer } from "react-toastify";
+import { forgotPassword } from "../../utils/APIRoutes";
+import { useRouter } from "next/router";
 
 const ResetPassword = () => {
-  const [formIsValid, setFormIsValid] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const notification = useSelector((state) => state.ui.notification);
-
-  const [emailState, dispatchEmail] = useReducer(emailReducer, {
-    value: "",
-    isValid: null,
+  const [values, setValues] = useState({
+    email: ""
   });
 
-  const emailInputRef = useRef();
+  const router = useRouter();
 
-  const { isValid: emailIsValid } = emailState;
-
-  useEffect(() => {
-    const identifier = setTimeout(() => {
-      setFormIsValid(emailIsValid);
-    }, 500);
-
-    // this runs as a clean up function
-    return () => {
-      clearTimeout(identifier);
-    };
-  }, [emailIsValid]);
-
-  const emailChangeHandler = (event) => {
-    dispatchEmail({ type: "USER_INPUT", val: event.target.value });
+  const handleChange = (event) => {
+    // console.log(event.target.value);
+    setValues({ ...values, [event.target.name]: event.target.value });
   };
 
-  const validateEmailHandler = () => {
-    dispatchEmail({ type: "INPUT_BLUR" });
+  const toastOptions = {
+    position: "bottom-right",
+    autoClose: 8000,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "dark",
   };
 
-  const submitHandler = async (event) => {
+  const validate = () => {
+    const { email } = values;
+    if (!email.includes('@')) {
+      toast.error(
+        "Email should contain '@'",
+        toastOptions
+      );
+      return false;
+    } 
+
+    return true;
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    if (validate()) {
+      const { email } = values;
+      console.log("clicked");
 
-    if (formIsValid) {
-      setIsLoading(true);
+      const response = await fetch(forgotPassword, {
+        method: "POST",
+        body: JSON.stringify({
+          email
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-      const email = emailState.value;
-      const res = await sendPasswordReset(email);
+      console.log(response);
 
-      console.log(res);
+      const data = await response.json();
+      console.log(data);
 
-      if (res.status === "success") {
-        dispatch(
-          uiActions.setNotification({
-            status: "success",
-            message: "Sent password Reset link to your email",
-          })
-        );
-
-        setIsLoading(false);
-
-        navigate("../auth", { replace: true });
-      }  
-      if(res.status === 'fail'){
-        dispatch(
-          uiActions.setNotification({
-            status: "error",
-            message: res.error.code,
-          })
-        );
-
-        setIsLoading(false);
-        navigate("../resetPassword", { replace: true });
-
+      if (data.status === "fail") {
+        console.log("failed");
+        toast.error(data.message, toastOptions);
       }
-    } else {
-      emailInputRef.current.focus();
+
+      if (data.status === "success") {
+        console.log("success");
+        router.push("/login");
+      }
     }
   };
-
   return (
     <Fragment>
-    {notification && (
-        <Notification
-          status={notification.status}
-          message={notification.message}
-        />
-      )}
-    <div className={classes.form_section}>
-      <h1 className={classes.heading}>Reset Password</h1>
-      <form className={classes.resetform} onSubmit={submitHandler}>
-        <div className={classes.control}>
-          <Input
-            ref={emailInputRef}
-            id="email"
-            label="Email"
+      <div className={classes.form_div}>
+        <form
+          onSubmit={(event) => handleSubmit(event)}
+          className={classes.form}
+        >
+          <div className={classes.brand}>
+            <h1 className={classes.app_heading}>Mimos</h1>
+          </div>
+          <input
+            className={classes.input}
             type="email"
-            isValid={emailIsValid}
-            value={emailState.value}
-            onChange={emailChangeHandler}
-            onBlur={validateEmailHandler}
+            placeholder="Email"
+            name="email"
+            onChange={handleChange}
           />
-        </div>
-        <div className={classes.actions}>
-          {!isLoading && <button>Submit</button>}
-          {isLoading && <LoadingSpinner />}
-          {!isLoading &&<Link to="/auth">Cancel</Link>}
-        </div>
-      </form>
-    </div>
+          <div className={classes.button__holder}>
+            <button type="submit" className={classes.button}>
+              Reset Password
+            </button>
+            <span className={classes.switch}>
+              <Link href="/login">
+                <a>Cancel</a>
+              </Link>
+            </span>
+          </div>
+        </form>
+      </div>
+      <ToastContainer />
     </Fragment>
   );
 };
