@@ -78,13 +78,18 @@
   text-transform: uppercase;
 }
 
-/* .toast{
-    position: "bottom-right";
-    autoClose: 8000;
-    pauseOnHover: true;
-    draggable: true;
-    theme: "dark";
-} */
+.password__input{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.toggle__btn{
+  color: #997af0;
+  border: none;
+  margin-left: -2rem;
+}
+
 
 @media screen and (min-width: 360px) and (max-width: 480px) {
   .form {

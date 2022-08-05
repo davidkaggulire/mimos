@@ -3,6 +3,7 @@ import { toast, ToastContainer } from "react-toastify";
 import classes from "./SignupForm.module.css";
 import Link from "next/link";
 import { registerRoute } from "../../utils/APIRoutes";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 import { useRouter } from "next/router";
 import LoadingSpinner from "../UI/LoadingSpinner";
@@ -23,6 +24,25 @@ function SignUp() {
     pauseOnHover: true,
     draggable: true,
     theme: "dark",
+  };
+
+  const [passwordType, setPasswordType] = useState("password");
+  const [passwordConfirmType, setPasswordConfirmType] = useState("password");
+
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      return;
+    }
+    setPasswordType("password");
+  };
+
+  const togglePasswordConfirm = () => {
+    if (passwordConfirmType === "password") {
+      setPasswordConfirmType("text");
+      return;
+    }
+    setPasswordConfirmType("password");
   };
 
   const handleChange = (event) => {
@@ -118,20 +138,48 @@ function SignUp() {
             name="email"
             onChange={handleChange}
           />
-          <input
-            className={classes.input}
-            type="password"
-            placeholder="Password"
-            name="password"
-            onChange={handleChange}
-          />
-          <input
-            className={classes.input}
-            type="password"
-            placeholder="Confirm password"
-            name="passwordConfirm"
-            onChange={handleChange}
-          />
+          <div className={classes.password__input}>
+            <input
+              className={classes.input}
+              type={passwordType}
+              placeholder="Password"
+              name="password"
+              onChange={handleChange}
+            />
+
+            {passwordType === "password" ? (
+              <FaRegEyeSlash
+                className={classes.toggle__btn}
+                onClick={togglePassword}
+              />
+            ) : (
+              <FaRegEye
+                className={classes.toggle__btn}
+                onClick={togglePassword}
+              />
+            )}
+          </div>
+          <div className={classes.password__input}>
+            <input
+              className={classes.input}
+              type={passwordConfirmType}
+              placeholder="Confirm password"
+              name="passwordConfirm"
+              onChange={handleChange}
+            />
+
+            {passwordConfirmType === "password" ? (
+              <FaRegEyeSlash
+                className={classes.toggle__btn}
+                onClick={togglePasswordConfirm}
+              />
+            ) : (
+              <FaRegEye
+                className={classes.toggle__btn}
+                onClick={togglePasswordConfirm}
+              />
+            )}
+          </div>
           {isLoading && <LoadingSpinner className={classes.center__spin} />}
           {!isLoading && (
             <button type="submit" className={classes.button}>
