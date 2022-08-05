@@ -117,6 +117,12 @@ const AuthForm = () => {
               <a>Register</a>
             </Link>
           </span>
+
+          <span className={classes.resetPassword}>
+            <Link href="/passwordReset">
+              <a>Forgot Password?</a>
+            </Link>
+          </span>
         </form>
       </div>
       <ToastContainer />
