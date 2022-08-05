@@ -64,13 +64,23 @@
 
 .switch {
   color: white;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .switch a {
-  color: #4e0eff;
+  color: #997af0;
   text-decoration: none;
   font-weight: bold;
+  text-transform: none;
+}
+
+.resetPassword a{
+  color: #997af0;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: none;
 }
 
 @media screen and (min-width: 360px) and (max-width: 480px) {
