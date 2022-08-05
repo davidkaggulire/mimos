@@ -68,13 +68,14 @@
 
 .switch {
   color: white;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .switch a {
-  color: #4e0eff;
+  color: #997af0;
   text-decoration: none;
   font-weight: bold;
+  text-transform: uppercase;
 }
 
 /* .toast{
