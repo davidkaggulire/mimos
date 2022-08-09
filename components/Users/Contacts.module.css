@@ -6,6 +6,13 @@
     padding: 0.5rem;
 }
 
+.app__user{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
 .app__heading{
     color: white;
 }
