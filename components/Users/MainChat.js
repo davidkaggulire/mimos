@@ -15,9 +15,9 @@ function MainChat() {
   const [currentUser, setCurrentUser] = useState(undefined);
   const [currentChat, setCurrentChat] = useState(undefined);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [token, setToken] = useState(undefined);
   const router = useRouter();
   // const socket = useRef();
-
   // access to socket.io
   const socket = useSocket();
 
@@ -54,6 +54,7 @@ function MainChat() {
         router.push("/login");
       } else {
         setCurrentUser(JSON.parse(localStorage.getItem("chat-user")));
+        setToken(localStorage.getItem("token"));
         setIsLoaded(true);
       }
     }
@@ -74,12 +75,23 @@ function MainChat() {
   useEffect(() => {
     async function getUsers() {
       if (currentUser) {
-        const response = await axios.get(
-          `${getAllUsersRoute}/${currentUser._id}`
-        );
-        // console.log(response);
+        try {
+          const headers = {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          };
 
-        setAllUsers(response.data);
+          const url = `${getAllUsersRoute}/${currentUser._id}`;
+
+          const response = await axios.get(
+            `${getAllUsersRoute}/${currentUser._id}`,
+            {headers: headers}
+          );
+
+          setAllUsers(response.data);
+        } catch (error) {
+          console.log(error);
+        }
       }
     }
 
