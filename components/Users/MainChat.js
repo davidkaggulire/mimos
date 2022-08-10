@@ -6,22 +6,20 @@ import axios from "axios";
 import { getAllUsersRoute, host } from "../../utils/APIRoutes";
 import { useRouter } from "next/router";
 import ChatContainer from "../Chat/ChatContainer";
-import { io } from "socket.io-client";
 import PhoneContacts from "./PhoneContact";
 import { useSocket } from "../../store/SocketProvider";
 
 function MainChat() {
   const [allUsers, setAllUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState(undefined);
+  const [token, setToken] = useState(undefined);
   const [currentChat, setCurrentChat] = useState(undefined);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [token, setToken] = useState(undefined);
+
   const router = useRouter();
-  // const socket = useRef();
-  // access to socket.io
+
   const socket = useSocket();
 
-  // console.log(io(host));
   const useMediaQuery = (width) => {
     const [targetReached, setTargetReached] = useState(false);
 
@@ -61,12 +59,20 @@ function MainChat() {
     setUser();
   }, [setIsLoaded, setCurrentUser, router]);
 
+  // useEffect(() => {
+  //   async function setUser() {
+  //     if (!localStorage.getItem("chat-user")) {
+  //       router.push("/login");
+  //     } else {
+  //       setIsLoaded(true);
+  //     }
+  //   }
+
+  //   setUser();
+  // }, [currentUser, setIsLoaded]);
+
   useEffect(() => {
     if (currentUser) {
-      // socket.current = io(host, {
-      //   withCredentials: true,
-      // });
-
       console.log(socket.current);
       socket.current.emit("add-user", currentUser._id);
     }
@@ -85,7 +91,7 @@ function MainChat() {
 
           const response = await axios.get(
             `${getAllUsersRoute}/${currentUser._id}`,
-            {headers: headers}
+            { headers: headers }
           );
 
           setAllUsers(response.data);
