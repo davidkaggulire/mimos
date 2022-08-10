@@ -1,33 +1,35 @@
 import classes from "./Profile.module.css";
 import Modal from "./../UI/Modal";
-import { useState } from "react";
-import { uploadImage } from "../../utils/APIRoutes";
+import { useEffect, useState } from "react";
+import { getCurrentUserRoute, uploadImage } from "../../utils/APIRoutes";
+import axios from "axios";
 
 function Profile(props) {
   const [file, setFile] = useState();
   const [fileName, setFileName] = useState("");
   const token = localStorage.getItem("token");
+  const { currentUser } = props;
 
   const saveFile = (e) => {
     setFile(e.target.files[0]);
     setFileName(e.target.files[0].name);
   };
 
+  
+
   const uploadFile = async (event) => {
     event.preventDefault();
     console.log(fileName);
     console.log(file);
+    console.log(currentUser);
 
     const formData = new FormData();
-    console.log(formData);
     formData.append("photo", file);
-    // formData.append("fileName", fileName);
 
     for (var key of formData.entries()) {
       console.log(key[0] + ", " + key[1]);
     }
 
-    console.log(formData);
     try {
       const response = await fetch(uploadImage, {
         method: "PATCH",
@@ -42,7 +44,32 @@ function Profile(props) {
     } catch (ex) {
       console.log(ex);
     }
+
+    if (currentUser) {
+      try {
+        const headers = {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        };
+
+        const userResponse = await axios.get(
+          `${getCurrentUserRoute}/${currentUser._id}`,
+          {headers: headers}
+        );
+
+        console.log(userResponse.data.data.data);
+        localStorage.setItem("chat-user", JSON.stringify(userResponse.data.data.data));
+
+        // setAllUsers(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
+
+  useEffect(() => {
+    uploadFile(event);
+  }, [])
 
   return (
     <Modal onClose={props.onClose}>
