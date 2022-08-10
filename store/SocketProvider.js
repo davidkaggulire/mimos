@@ -1,4 +1,5 @@
-import { createContext, useContext, useRef, useState } from "react";
+import { useRouter } from "next/router";
+import { createContext, useContext, useRef, useState, useEffect } from "react";
 import io from "socket.io-client";
 import { host } from "../utils/APIRoutes";
 
@@ -9,9 +10,6 @@ export const useSocket = () => {
 };
 
 const SocketProvider = ({ children }) => {
-
-  
-
   const socket = useRef();
   socket.current = io(host, {
     withCredentials: true,
