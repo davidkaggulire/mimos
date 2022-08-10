@@ -9,6 +9,9 @@ export const useSocket = () => {
 };
 
 const SocketProvider = ({ children }) => {
+
+  
+
   const socket = useRef();
   socket.current = io(host, {
     withCredentials: true,
