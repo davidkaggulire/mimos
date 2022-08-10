@@ -35,7 +35,7 @@ function Contacts(props) {
 
   return (
     <Fragment>
-      {imageFormShow && <Profile onClose={hideImageFormHandler} />}
+      {imageFormShow && <Profile onClose={hideImageFormHandler} currentUser={currentUser} />}
 
       {currentUserImage && (
         <div className={classes.contacts}>
