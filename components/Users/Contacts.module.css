@@ -43,4 +43,18 @@
     .contacts {
       width: 100%;
     }
+
+    .top__heading{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        /* gap: 5rem; */
+        align-items: center;
+        width: 100%;
+    }
+
+    .menu{
+        color: white;
+        font-size: 1.5rem;
+    }
   }
