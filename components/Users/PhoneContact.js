@@ -3,12 +3,15 @@ import { Router, useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import classes from "./Contacts.module.css";
 import { MdMoreVert } from "react-icons/md";
+import Menu from "../Navigation/Menu";
 
 function PhoneContacts(props) {
   const { contacts, currentUser, changeChat } = props;
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
+
+  const [viewSideMenu, setViewSideMenu] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -27,12 +30,21 @@ function PhoneContacts(props) {
     router.push("/phoneChat");
   };
 
+  const showMenuHandler = () => {
+    setViewSideMenu(true);
+  };
+
+  const hideMenuHandler = () => {
+    setViewSideMenu(false);
+  };
+
   return (
     <Fragment>
+      {viewSideMenu && <Menu onClose={hideMenuHandler} currentUser={currentUser} />}
       <div className={classes.contacts}>
         <div className={classes.top__heading}>
           <h2 className={classes.app__heading}>Mimos</h2>
-          <MdMoreVert className={classes.menu} />
+          <MdMoreVert className={classes.menu} onClick={showMenuHandler}/>
         </div>
 
         {contacts.map((contact, index) => {
