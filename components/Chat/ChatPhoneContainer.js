@@ -131,7 +131,7 @@ function ChatPhoneContainer() {
             <div className={classes.chat__avatar}>
               <IoArrowBack onClick={viewChatsHandler} />
               <Image
-                src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=400"
+                src={currentChat.photo}
                 alt="avatar"
                 height={50}
                 width={50}
