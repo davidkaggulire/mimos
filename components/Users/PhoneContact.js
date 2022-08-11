@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Router, useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import classes from "./Contacts.module.css";
+import { MdMoreVert } from "react-icons/md";
 
 function PhoneContacts(props) {
   const { contacts, currentUser, changeChat } = props;
@@ -22,20 +23,24 @@ function PhoneContacts(props) {
     setCurrentSelected(index);
     localStorage.setItem("messaging-user", JSON.stringify(contact));
     changeChat(contact);
-    
-    router.push('/phoneChat');
+
+    router.push("/phoneChat");
   };
 
   return (
     <Fragment>
       <div className={classes.contacts}>
-        <h2 className={classes.app__heading}>Mimos</h2>
+        <div className={classes.top__heading}>
+          <h2 className={classes.app__heading}>Mimos</h2>
+          <MdMoreVert className={classes.menu} />
+        </div>
+
         {contacts.map((contact, index) => {
           return (
             <div
-            className={`${classes.user__details} ${
-              index === currentSelected ? "selected" : ""
-            }`}
+              className={`${classes.user__details} ${
+                index === currentSelected ? "selected" : ""
+              }`}
               key={index}
               onClick={() => changeCurrentChat(index, contact)}
             >
