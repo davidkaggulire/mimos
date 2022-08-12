@@ -7,8 +7,10 @@ import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
 import { loginRoute } from "../../utils/APIRoutes";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const AuthForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [values, setValues] = useState({
     username: "",
     password: "",
@@ -61,6 +63,7 @@ const AuthForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (validate()) {
+      setIsLoading(true);
       const { password, username } = values;
       console.log("clicked");
 
@@ -134,9 +137,12 @@ const AuthForm = () => {
             )}
           </div>
 
-          <button type="submit" className={classes.button}>
-            Login
-          </button>
+          {isLoading && <LoadingSpinner />}
+          {!isLoading && (
+            <button type="submit" className={classes.button}>
+              Login
+            </button>
+          )}
           <span className={classes.switch}>
             Don't have an account ?{" "}
             <Link href="/signup">
