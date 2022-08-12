@@ -10,6 +10,8 @@ function EditProfile() {
   const [currentUser, setCurrentUser] = useState(undefined);
   const [isLoaded, setIsLoaded] = useState(false);
   const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+  const toggling = () => setIsOpen(!isOpen);
 
   useEffect(() => {
     async function setUser() {
@@ -48,7 +50,17 @@ function EditProfile() {
               width={50}
               height={50}
             />
-            <BsFillCameraFill className={classes.icon} />
+
+            <BsFillCameraFill className={classes.icon} onClick={toggling} />
+            {isOpen && (
+              <nav className={classes.dropdown__container}>
+                <ul className={classes.dropdown__ul}>
+                  <li className={classes.dropdown__list}>File</li>
+                  <li className={classes.dropdown__list}>Camera</li>
+                </ul>
+              </nav>
+            )}
+
             <p>{currentUser.username}</p>
           </div>
         )}
@@ -57,7 +69,9 @@ function EditProfile() {
         <div className={classes.middle__section}>
           <div className={classes.details}>
             <div className={classes.details__item}>
-              <BsFillPersonFill className={`${classes.details__icon} ${classes.username}`} />
+              <BsFillPersonFill
+                className={`${classes.details__icon} ${classes.username}`}
+              />
               <p>Username</p>
             </div>
             <p>{currentUser.username}</p>
@@ -65,7 +79,9 @@ function EditProfile() {
 
           <div className={classes.details}>
             <div className={classes.details__item}>
-              <MdEmail className={`${classes.details__icon} ${classes.email}`} />
+              <MdEmail
+                className={`${classes.details__icon} ${classes.email}`}
+              />
               <p>Email</p>
             </div>
             <p>{currentUser.email}</p>
