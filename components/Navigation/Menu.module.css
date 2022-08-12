@@ -9,7 +9,7 @@
   flex-direction: row;
   justify-content: flex-start;
   padding-left: 1.5rem;
-  transition: 0.5 ease-in-out
+  transition: 0.5s ease-in-out;
 }
 
 .side__element:hover {
@@ -21,6 +21,7 @@
   padding-bottom: 2rem;
   display: flex;
   flex-direction: row;
+  cursor: pointer;
 }
 
 .side__link a {
@@ -31,9 +32,13 @@
 
 
 .side__icon {
+  fill:#fff;
   height: 2rem;
   width: 2rem;
   color: rgb(89, 87, 87);
+  border-radius: 0.5rem;
+  padding:0.1rem;
+  background-color: rgb(135, 136, 220);
 }
 
 .feature__icon {
