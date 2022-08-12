@@ -1,3 +1,83 @@
-.hello {
-    background-color: aqua;
+.window {
+  background-color: #305679;
+  color: #fff;
+  /* padding: 0.5rem; */
+  border-bottom: 4px groove #6699cc;
+}
+
+.heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  /* font-weight: 300; */
+  padding-left: 1.5rem;
+}
+
+.arrow__back {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.top {
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  color: #fff;
+  padding-bottom: 0.5rem;
+}
+
+.user__avatar {
+  border-radius: 50%;
+}
+
+.list__container {
+  padding: 0;
+  padding-left: 1.5rem;
+}
+
+.list {
+  color: black;
+  list-style: none;
+  padding: 0;
+}
+
+.list__item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1rem;
+}
+
+.list:hover, .list:active {
+  background-color: #ffffff39;
+}
+
+.icon {
+  border-radius: 0.5rem;
+  fill: #fff;
+  height: 2rem;
+  width: 2rem;
+}
+
+.list__profile {
+  background-color: rgb(240, 162, 98);
+  padding: 0.3rem;
+}
+
+.list__chat {
+  background-color: rgb(52, 217, 246);
+  padding: 0.4rem;
+}
+
+.list__notification {
+  background-color: rgb(220, 127, 127);
+  padding: 0.4rem;
 }
