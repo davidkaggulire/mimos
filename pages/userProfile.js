@@ -29,6 +29,10 @@ function UserProfile() {
     router.push("/chat");
   };
 
+  const editProfile = () => {
+    router.push("/editProfile");
+  };
+
   return (
     <div>
       {isLoaded && (
@@ -56,7 +60,7 @@ function UserProfile() {
       )}
       <nav>
         <ul className={classes.list__container}>
-          <li className={classes.list}>
+          <li className={classes.list} onClick={editProfile}>
             <div className={classes.list__item}>
               <MdAccountCircle
                 className={`${classes.list__profile} ${classes.icon}`}
