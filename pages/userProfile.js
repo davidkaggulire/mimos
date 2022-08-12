@@ -4,7 +4,7 @@ import classes from "./../components/Users/UserProfile.module.css";
 import { IoArrowBack } from "react-icons/io5";
 import { useRouter } from "next/router";
 import { MdAccountCircle } from "react-icons/md";
-import { BsFillChatFill,BsBellFill } from "react-icons/bs";
+import { BsFillChatFill, BsBellFill } from "react-icons/bs";
 
 function UserProfile() {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -58,21 +58,27 @@ function UserProfile() {
         <ul className={classes.list__container}>
           <li className={classes.list}>
             <div className={classes.list__item}>
-              <MdAccountCircle className={`${classes.list__profile} ${classes.icon}`} />
+              <MdAccountCircle
+                className={`${classes.list__profile} ${classes.icon}`}
+              />
               <p>Edit profile</p>
             </div>
           </li>
 
           <li className={classes.list}>
             <div className={classes.list__item}>
-              <BsFillChatFill className={`${classes.list__chat} ${classes.icon}`} />
+              <BsFillChatFill
+                className={`${classes.list__chat} ${classes.icon}`}
+              />
               <p>Chat Settings</p>
             </div>
           </li>
 
           <li className={classes.list}>
             <div className={classes.list__item}>
-              <BsBellFill className={`${classes.list__notification} ${classes.icon}`} />
+              <BsBellFill
+                className={`${classes.list__notification} ${classes.icon}`}
+              />
               <p>Notifications and sounds</p>
             </div>
           </li>
