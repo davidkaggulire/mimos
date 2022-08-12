@@ -38,25 +38,31 @@
 
 .list__container {
   padding: 0;
-  padding-left: 1.5rem;
+  /* padding-left: 1.5rem; */
 }
 
 .list {
   color: black;
   list-style: none;
   padding: 0;
+  transition: 0.5s ease-in-out;
+  border: 1px solid transparent;
+  cursor: pointer;
+  width: 100%;
 }
 
 .list__item {
+  padding-left: 1.5rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   gap: 1rem;
   font-size: 1rem;
+  width: 100%;
 }
 
-.list:hover, .list:active {
+.list:hover {
   background-color: #ffffff39;
 }
 
